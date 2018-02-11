@@ -40,12 +40,12 @@ $.fn.addTab= function(name,content,functionName){
 $("#navSideBar a").click(function(e){
 	
 	var name=$(this).attr("name");
-	var url="defailt";
+	var url="homePage";
 	
 	if(name == 'addRole'){
-		url="/admin/addRole.html";
+		url="/admin/addRole";
 	}else if( name == 'addUser'){
-		url="/admin/addUser.html";
+		url="/admin/addUser";
 	}
 	
 	function fun1(){
