@@ -1,0 +1,13 @@
+.nav-tabs > li .close {
+    margin: -2px 0 0 10px;
+    font-size: 18px;
+}
+.tab-pane{
+border-top: 1px solid #dee2e6;
+}
+.nav-tabs{
+	border: none;
+}
+.add-role , .add-user{
+    	margin: 20px;
+    }

@@ -6,7 +6,6 @@ spring:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: root
-
 # ===============================
 # = JPA configurations
 # ===============================
@@ -18,7 +17,11 @@ spring:
     database-platform: postgres
     properties:
       hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
-
+# ===============================
+# = Thymeleaf configurations
+# ===============================
+  thymeleaf:
+    cache: false
 # ===============================
 # = Logging configurations
 # ===============================
