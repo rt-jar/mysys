@@ -2,22 +2,27 @@ package org.mysys.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 
 /**
- * The persistent class for the role database table.
+ * The persistent class for the screen database table.
  * 
  */
 @Entity
-@NamedQuery(name="Role.findAll", query="SELECT r FROM Role r")
-public class Role implements Serializable {
+@NamedQuery(name="Screen.findAll", query="SELECT s FROM Screen s")
+public class Screen implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
+	private long screenid;
+
+	private String active;
+
+	private BigDecimal checker;
 
 	private String createdby;
 
@@ -32,39 +37,52 @@ public class Role implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date modifieddt;
 
-	private String rolename;
+	private String screendisplayname;
+
+	private String screenname;
 
 	@Temporal(TemporalType.DATE)
 	private Date startdate;
 
-	private String status;
+	//bi-directional many-to-one association to Modulescreen
+	@OneToMany(mappedBy="screen")
+	private List<Modulescreen> modulescreens;
+
+	//bi-directional many-to-one association to Rolescreenaccess
+	@OneToMany(mappedBy="screen")
+	private List<Rolescreenaccess> rolescreenaccesses;
 
 	//bi-directional many-to-one association to Site
 	@ManyToOne
 	@JoinColumn(name="siteid")
 	private Site site;
 
-	//bi-directional many-to-one association to Rolescreenaccess
-	@OneToMany(mappedBy="role")
-	private List<Rolescreenaccess> rolescreenaccesses;
-
-	//bi-directional many-to-one association to Userrole
-	@OneToMany(mappedBy="role")
-	private List<Userrole> userroles;
-
-	public Role() {
+	public Screen() {
 	}
 
-
-	public long getId() {
-		return id;
+	public long getScreenid() {
+		return this.screenid;
 	}
 
-
-	public void setId(long id) {
-		this.id = id;
+	public void setScreenid(long screenid) {
+		this.screenid = screenid;
 	}
 
+	public String getActive() {
+		return this.active;
+	}
+
+	public void setActive(String active) {
+		this.active = active;
+	}
+
+	public BigDecimal getChecker() {
+		return this.checker;
+	}
+
+	public void setChecker(BigDecimal checker) {
+		this.checker = checker;
+	}
 
 	public String getCreatedby() {
 		return this.createdby;
@@ -106,12 +124,20 @@ public class Role implements Serializable {
 		this.modifieddt = modifieddt;
 	}
 
-	public String getRolename() {
-		return this.rolename;
+	public String getScreendisplayname() {
+		return this.screendisplayname;
 	}
 
-	public void setRolename(String rolename) {
-		this.rolename = rolename;
+	public void setScreendisplayname(String screendisplayname) {
+		this.screendisplayname = screendisplayname;
+	}
+
+	public String getScreenname() {
+		return this.screenname;
+	}
+
+	public void setScreenname(String screenname) {
+		this.screenname = screenname;
 	}
 
 	public Date getStartdate() {
@@ -122,20 +148,26 @@ public class Role implements Serializable {
 		this.startdate = startdate;
 	}
 
-	public String getStatus() {
-		return this.status;
+	public List<Modulescreen> getModulescreens() {
+		return this.modulescreens;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setModulescreens(List<Modulescreen> modulescreens) {
+		this.modulescreens = modulescreens;
 	}
 
-	public Site getSite() {
-		return this.site;
+	public Modulescreen addModulescreen(Modulescreen modulescreen) {
+		getModulescreens().add(modulescreen);
+		modulescreen.setScreen(this);
+
+		return modulescreen;
 	}
 
-	public void setSite(Site site) {
-		this.site = site;
+	public Modulescreen removeModulescreen(Modulescreen modulescreen) {
+		getModulescreens().remove(modulescreen);
+		modulescreen.setScreen(null);
+
+		return modulescreen;
 	}
 
 	public List<Rolescreenaccess> getRolescreenaccesses() {
@@ -148,38 +180,24 @@ public class Role implements Serializable {
 
 	public Rolescreenaccess addRolescreenaccess(Rolescreenaccess rolescreenaccess) {
 		getRolescreenaccesses().add(rolescreenaccess);
-		rolescreenaccess.setRole(this);
+		rolescreenaccess.setScreen(this);
 
 		return rolescreenaccess;
 	}
 
 	public Rolescreenaccess removeRolescreenaccess(Rolescreenaccess rolescreenaccess) {
 		getRolescreenaccesses().remove(rolescreenaccess);
-		rolescreenaccess.setRole(null);
+		rolescreenaccess.setScreen(null);
 
 		return rolescreenaccess;
 	}
 
-	public List<Userrole> getUserroles() {
-		return this.userroles;
+	public Site getSite() {
+		return this.site;
 	}
 
-	public void setUserroles(List<Userrole> userroles) {
-		this.userroles = userroles;
-	}
-
-	public Userrole addUserrole(Userrole userrole) {
-		getUserroles().add(userrole);
-		userrole.setRole(this);
-
-		return userrole;
-	}
-
-	public Userrole removeUserrole(Userrole userrole) {
-		getUserroles().remove(userrole);
-		userrole.setRole(null);
-
-		return userrole;
+	public void setSite(Site site) {
+		this.site = site;
 	}
 
 }

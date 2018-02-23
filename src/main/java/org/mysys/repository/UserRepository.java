@@ -1,12 +1,12 @@
 package org.mysys.repository;
 
-import org.mysys.model.Users;
+import org.mysys.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<Users, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-    Users findByEmail(String email);
+    User findByLoginid(String loginid);
 
 }
