@@ -2,6 +2,9 @@ package org.mysys.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 import java.util.List;
 
@@ -44,12 +47,13 @@ public class Displist implements Serializable {
 	private String whereclause;
 
 	//bi-directional many-to-one association to Site
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="siteid")
 	private Site site;
 
 	//bi-directional many-to-one association to Displistcol
-	@OneToMany(mappedBy="displist")
+	@OneToMany(mappedBy="displist",fetch=FetchType.EAGER)
 	private List<Displistcol> displistcols;
 
 	public Displist() {

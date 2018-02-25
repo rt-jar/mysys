@@ -7,6 +7,8 @@ import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -18,29 +20,30 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
+@PropertySource(value = { "classpath:application.properties" })
 @EnableJpaRepositories(basePackages = "org.mysys.repository")
 @EnableTransactionManagement
 public class JpaConfig {
 	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory(Environment env) {
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-		em.setDataSource(dataSource());
+		em.setDataSource(dataSource(env));
 		em.setPackagesToScan(new String[] { "org.mysys.model" });
 
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		em.setJpaVendorAdapter(vendorAdapter);
-		em.setJpaProperties(additionalProperties());
+		em.setJpaProperties(additionalProperties(env));
 
 		return em;
 	}
 
 	@Bean
-	public DataSource dataSource(){
+	public DataSource dataSource(Environment env){
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("org.postgresql.Driver");
-		dataSource.setUrl("jdbc:postgresql://localhost:5432/postgres");
-		dataSource.setUsername("postgres");
-		dataSource.setPassword("root");
+		dataSource.setDriverClassName(env.getProperty("db.driver"));
+		dataSource.setUrl(env.getProperty("db.url"));
+		dataSource.setUsername(env.getProperty("db.username"));
+		dataSource.setPassword(env.getProperty("db.password"));
 		return dataSource;
 	}
 
@@ -57,11 +60,11 @@ public class JpaConfig {
 		return new PersistenceExceptionTranslationPostProcessor();
 	}
 
-	Properties additionalProperties() {
+	Properties additionalProperties(Environment env) {
 		Properties properties = new Properties();
-		properties.setProperty("hibernate.hbm2ddl.auto", "update");
-		properties.setProperty("spring.jpa.show-sql", "true");
-		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+		properties.setProperty("hibernate.hbm2ddl.auto",env.getProperty("hibernate.hbm2ddl.auto"));
+		properties.setProperty("spring.jpa.show-sql", env.getProperty("hibernate.show_sql"));
+		properties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
 		return properties;
 	}
 }

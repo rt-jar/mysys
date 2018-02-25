@@ -2,6 +2,9 @@ package org.mysys.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 import java.util.List;
 
@@ -36,10 +39,11 @@ public class Statemaster implements Serializable {
 	private String tin;
 
 	//bi-directional many-to-one association to Citymaster
-	@OneToMany(mappedBy="statemaster")
+	@OneToMany(mappedBy="statemaster",fetch=FetchType.EAGER)
 	private List<Citymaster> citymasters;
 
 	//bi-directional many-to-one association to Site
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="siteid")
 	private Site site;

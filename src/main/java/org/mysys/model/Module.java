@@ -2,6 +2,9 @@ package org.mysys.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 import java.util.List;
 
@@ -42,12 +45,13 @@ public class Module implements Serializable {
 	private Date startdate;
 
 	//bi-directional many-to-one association to Site
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="siteid")
 	private Site site;
 
 	//bi-directional many-to-one association to Modulescreen
-	@OneToMany(mappedBy="module")
+	@OneToMany(mappedBy="module",fetch=FetchType.EAGER)
 	private List<Modulescreen> modulescreens;
 
 	public Module() {

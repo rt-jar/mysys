@@ -2,6 +2,9 @@ package org.mysys.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -77,11 +80,13 @@ public class Displistcol implements Serializable {
 	private String uniquekey;
 
 	//bi-directional many-to-one association to Displist
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="dispid",insertable=false,updatable=false)
 	private Displist displist;
 
 	//bi-directional many-to-one association to Site
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="siteid")
 	private Site site;
