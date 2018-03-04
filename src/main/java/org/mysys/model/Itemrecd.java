@@ -18,7 +18,10 @@ public class Itemrecd implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long recptno;
+	@Column(name="ir_id")
+	private long irId;
+
+	private String acctyear;
 
 	@Temporal(TemporalType.DATE)
 	private Date challandate;
@@ -29,8 +32,6 @@ public class Itemrecd implements Serializable {
 
 	@Temporal(TemporalType.DATE)
 	private Date createddt;
-
-	private String deptname;
 
 	@Temporal(TemporalType.DATE)
 	private Date invdate;
@@ -49,6 +50,8 @@ public class Itemrecd implements Serializable {
 
 	@Temporal(TemporalType.DATE)
 	private Date recddate;
+
+	private BigDecimal recptno;
 
 	private String remarks;
 
@@ -74,12 +77,20 @@ public class Itemrecd implements Serializable {
 	public Itemrecd() {
 	}
 
-	public long getRecptno() {
-		return this.recptno;
+	public long getIrId() {
+		return this.irId;
 	}
 
-	public void setRecptno(long recptno) {
-		this.recptno = recptno;
+	public void setIrId(long irId) {
+		this.irId = irId;
+	}
+
+	public String getAcctyear() {
+		return this.acctyear;
+	}
+
+	public void setAcctyear(String acctyear) {
+		this.acctyear = acctyear;
 	}
 
 	public Date getChallandate() {
@@ -112,14 +123,6 @@ public class Itemrecd implements Serializable {
 
 	public void setCreateddt(Date createddt) {
 		this.createddt = createddt;
-	}
-
-	public String getDeptname() {
-		return this.deptname;
-	}
-
-	public void setDeptname(String deptname) {
-		this.deptname = deptname;
 	}
 
 	public Date getInvdate() {
@@ -176,6 +179,14 @@ public class Itemrecd implements Serializable {
 
 	public void setRecddate(Date recddate) {
 		this.recddate = recddate;
+	}
+
+	public BigDecimal getRecptno() {
+		return this.recptno;
+	}
+
+	public void setRecptno(BigDecimal recptno) {
+		this.recptno = recptno;
 	}
 
 	public String getRemarks() {

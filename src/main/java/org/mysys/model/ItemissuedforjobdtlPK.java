@@ -12,19 +12,19 @@ public class ItemissuedforjobdtlPK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
-	@Column(insertable=false, updatable=false)
-	private long challanno;
+	@Column(name="itj_id", insertable=false, updatable=false)
+	private long itjId;
 
 	@Column(insertable=false, updatable=false)
 	private long itemid;
 
 	public ItemissuedforjobdtlPK() {
 	}
-	public long getChallanno() {
-		return this.challanno;
+	public long getItjId() {
+		return this.itjId;
 	}
-	public void setChallanno(long challanno) {
-		this.challanno = challanno;
+	public void setItjId(long itjId) {
+		this.itjId = itjId;
 	}
 	public long getItemid() {
 		return this.itemid;
@@ -42,14 +42,14 @@ public class ItemissuedforjobdtlPK implements Serializable {
 		}
 		ItemissuedforjobdtlPK castOther = (ItemissuedforjobdtlPK)other;
 		return 
-			(this.challanno == castOther.challanno)
+			(this.itjId == castOther.itjId)
 			&& (this.itemid == castOther.itemid);
 	}
 
 	public int hashCode() {
 		final int prime = 31;
 		int hash = 17;
-		hash = hash * prime + ((int) (this.challanno ^ (this.challanno >>> 32)));
+		hash = hash * prime + ((int) (this.itjId ^ (this.itjId >>> 32)));
 		hash = hash * prime + ((int) (this.itemid ^ (this.itemid >>> 32)));
 		
 		return hash;

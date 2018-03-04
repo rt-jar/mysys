@@ -12,24 +12,25 @@ public class ItemrecddtlPK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
-	@Column(insertable=false, updatable=false)
-	private long recptno;
+	@Column(name="ir_id", insertable=false, updatable=false)
+	private long irId;
 
-	private String itemcode;
+	@Column(insertable=false, updatable=false)
+	private long itemid;
 
 	public ItemrecddtlPK() {
 	}
-	public long getRecptno() {
-		return this.recptno;
+	public long getIrId() {
+		return this.irId;
 	}
-	public void setRecptno(long recptno) {
-		this.recptno = recptno;
+	public void setIrId(long irId) {
+		this.irId = irId;
 	}
-	public String getItemcode() {
-		return this.itemcode;
+	public long getItemid() {
+		return this.itemid;
 	}
-	public void setItemcode(String itemcode) {
-		this.itemcode = itemcode;
+	public void setItemid(long itemid) {
+		this.itemid = itemid;
 	}
 
 	public boolean equals(Object other) {
@@ -41,15 +42,15 @@ public class ItemrecddtlPK implements Serializable {
 		}
 		ItemrecddtlPK castOther = (ItemrecddtlPK)other;
 		return 
-			(this.recptno == castOther.recptno)
-			&& this.itemcode.equals(castOther.itemcode);
+			(this.irId == castOther.irId)
+			&& (this.itemid == castOther.itemid);
 	}
 
 	public int hashCode() {
 		final int prime = 31;
 		int hash = 17;
-		hash = hash * prime + ((int) (this.recptno ^ (this.recptno >>> 32)));
-		hash = hash * prime + this.itemcode.hashCode();
+		hash = hash * prime + ((int) (this.irId ^ (this.irId >>> 32)));
+		hash = hash * prime + ((int) (this.itemid ^ (this.itemid >>> 32)));
 		
 		return hash;
 	}

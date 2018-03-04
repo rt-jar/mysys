@@ -7,65 +7,49 @@ import java.util.Date;
 
 
 /**
- * The persistent class for the vendoritemadj database table.
+ * The persistent class for the errorlog database table.
  * 
  */
 @Entity
-@NamedQuery(name="Vendoritemadj.findAll", query="SELECT v FROM Vendoritemadj v")
-public class Vendoritemadj implements Serializable {
+@NamedQuery(name="Errorlog.findAll", query="SELECT e FROM Errorlog e")
+public class Errorlog implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="via_id")
-	private long viaId;
-
-	private String acctyear;
 
 	private String createdby;
 
 	@Temporal(TemporalType.DATE)
 	private Date createddt;
 
+	private String errorcode;
+
+	private String errordesc;
+
 	@Temporal(TemporalType.DATE)
-	private Date entrydate;
+	private Date logdate;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private BigDecimal logid;
 
 	private String modifiedby;
 
 	@Temporal(TemporalType.DATE)
 	private Date modifieddt;
 
+	private String program;
+
 	private String remarks;
 
-	private BigDecimal vendoradjno;
+	private BigDecimal userid;
 
-	//bi-directional many-to-one association to Contact
-	@ManyToOne
-	@JoinColumn(name="contactid")
-	private Contact contact;
+	private String username;
 
 	//bi-directional many-to-one association to Site
 	@ManyToOne
 	@JoinColumn(name="siteid")
 	private Site site;
 
-	public Vendoritemadj() {
-	}
-
-	public long getViaId() {
-		return this.viaId;
-	}
-
-	public void setViaId(long viaId) {
-		this.viaId = viaId;
-	}
-
-	public String getAcctyear() {
-		return this.acctyear;
-	}
-
-	public void setAcctyear(String acctyear) {
-		this.acctyear = acctyear;
+	public Errorlog() {
 	}
 
 	public String getCreatedby() {
@@ -84,12 +68,36 @@ public class Vendoritemadj implements Serializable {
 		this.createddt = createddt;
 	}
 
-	public Date getEntrydate() {
-		return this.entrydate;
+	public String getErrorcode() {
+		return this.errorcode;
 	}
 
-	public void setEntrydate(Date entrydate) {
-		this.entrydate = entrydate;
+	public void setErrorcode(String errorcode) {
+		this.errorcode = errorcode;
+	}
+
+	public String getErrordesc() {
+		return this.errordesc;
+	}
+
+	public void setErrordesc(String errordesc) {
+		this.errordesc = errordesc;
+	}
+
+	public Date getLogdate() {
+		return this.logdate;
+	}
+
+	public void setLogdate(Date logdate) {
+		this.logdate = logdate;
+	}
+
+	public BigDecimal getLogid() {
+		return this.logid;
+	}
+
+	public void setLogid(BigDecimal logid) {
+		this.logid = logid;
 	}
 
 	public String getModifiedby() {
@@ -108,6 +116,14 @@ public class Vendoritemadj implements Serializable {
 		this.modifieddt = modifieddt;
 	}
 
+	public String getProgram() {
+		return this.program;
+	}
+
+	public void setProgram(String program) {
+		this.program = program;
+	}
+
 	public String getRemarks() {
 		return this.remarks;
 	}
@@ -116,20 +132,20 @@ public class Vendoritemadj implements Serializable {
 		this.remarks = remarks;
 	}
 
-	public BigDecimal getVendoradjno() {
-		return this.vendoradjno;
+	public BigDecimal getUserid() {
+		return this.userid;
 	}
 
-	public void setVendoradjno(BigDecimal vendoradjno) {
-		this.vendoradjno = vendoradjno;
+	public void setUserid(BigDecimal userid) {
+		this.userid = userid;
 	}
 
-	public Contact getContact() {
-		return this.contact;
+	public String getUsername() {
+		return this.username;
 	}
 
-	public void setContact(Contact contact) {
-		this.contact = contact;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public Site getSite() {

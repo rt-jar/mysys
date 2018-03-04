@@ -1,17 +1,11 @@
 package org.mysys.model;
 
 import java.io.Serializable;
-import java.util.Date;
-
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.Date;
 
 
 /**
@@ -37,7 +31,6 @@ public class Userrole implements Serializable {
 	private Date modifieddt;
 
 	//bi-directional many-to-one association to Role
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="roleid",insertable=false,updatable=false)
 	private Role role;
@@ -49,7 +42,6 @@ public class Userrole implements Serializable {
 	private Site site;
 
 	//bi-directional many-to-one association to User
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="userid",insertable=false,updatable=false)
 	private User user;

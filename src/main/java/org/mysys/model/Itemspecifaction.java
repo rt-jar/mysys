@@ -2,6 +2,10 @@ package org.mysys.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.math.BigDecimal;
 import java.util.Date;
 
 
@@ -22,9 +26,7 @@ public class Itemspecifaction implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date createddt;
 
-	private String itemcode;
-
-	private String itemspecname;
+	private BigDecimal displayseq;
 
 	private String itemspecvalue;
 
@@ -33,12 +35,18 @@ public class Itemspecifaction implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date modifieddt;
 
+	//bi-directional many-to-one association to Itemmaster
+	@ManyToOne
+	@JoinColumn(name="itemid",insertable=false,updatable=false)
+	private Itemmaster itemmaster;
+
 	//bi-directional many-to-one association to Itemspecmaster
 	@ManyToOne
 	@JoinColumn(name="itemspecid",insertable=false,updatable=false)
 	private Itemspecmaster itemspecmaster;
 
 	//bi-directional many-to-one association to Site
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="siteid")
 	private Site site;
@@ -70,20 +78,12 @@ public class Itemspecifaction implements Serializable {
 		this.createddt = createddt;
 	}
 
-	public String getItemcode() {
-		return this.itemcode;
+	public BigDecimal getDisplayseq() {
+		return this.displayseq;
 	}
 
-	public void setItemcode(String itemcode) {
-		this.itemcode = itemcode;
-	}
-
-	public String getItemspecname() {
-		return this.itemspecname;
-	}
-
-	public void setItemspecname(String itemspecname) {
-		this.itemspecname = itemspecname;
+	public void setDisplayseq(BigDecimal displayseq) {
+		this.displayseq = displayseq;
 	}
 
 	public String getItemspecvalue() {
@@ -108,6 +108,14 @@ public class Itemspecifaction implements Serializable {
 
 	public void setModifieddt(Date modifieddt) {
 		this.modifieddt = modifieddt;
+	}
+
+	public Itemmaster getItemmaster() {
+		return this.itemmaster;
+	}
+
+	public void setItemmaster(Itemmaster itemmaster) {
+		this.itemmaster = itemmaster;
 	}
 
 	public Itemspecmaster getItemspecmaster() {

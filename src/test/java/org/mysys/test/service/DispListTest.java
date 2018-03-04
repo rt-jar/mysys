@@ -26,7 +26,7 @@ public class DispListTest {
 	
 	@Test
 	public void testListing(){
-		Optional<Displist>  dispList = listingService.loadMetadata(12);
+		Optional<Displist>  dispList = listingService.loadMetadata(1);
 		assertThat(dispList.get(),notNullValue());
 	}
 }

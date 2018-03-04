@@ -2,9 +2,6 @@ package org.mysys.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.Date;
 
 
@@ -34,13 +31,11 @@ public class Citymaster implements Serializable {
 	private Date modifieddt;
 
 	//bi-directional many-to-one association to Site
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="siteid")
 	private Site site;
 
 	//bi-directional many-to-one association to Statemaster
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="stateid")
 	private Statemaster statemaster;

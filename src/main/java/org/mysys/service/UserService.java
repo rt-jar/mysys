@@ -36,8 +36,4 @@ public class UserService implements UserDetailsService {
                 .map(role -> new SimpleGrantedAuthority(role.getRole().getRolename()))
                 .collect(Collectors.toList());
     }
-    
-	public User getUserByLoginid(String loginid) {
-        return userRepository.findByLoginid(loginid);
-    }
 }

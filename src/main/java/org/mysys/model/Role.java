@@ -1,21 +1,9 @@
 package org.mysys.model;
 
 import java.io.Serializable;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 /**
@@ -52,34 +40,28 @@ public class Role implements Serializable {
 	private String status;
 
 	//bi-directional many-to-one association to Site
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="siteid")
 	private Site site;
 
 	//bi-directional many-to-one association to Rolescreenaccess
-	@JsonIgnore
 	@OneToMany(mappedBy="role")
 	private List<Rolescreenaccess> rolescreenaccesses;
 
 	//bi-directional many-to-one association to Userrole
-	@JsonIgnore
 	@OneToMany(mappedBy="role")
 	private List<Userrole> userroles;
 
 	public Role() {
 	}
 
-
 	public long getId() {
-		return id;
+		return this.id;
 	}
-
 
 	public void setId(long id) {
 		this.id = id;
 	}
-
 
 	public String getCreatedby() {
 		return this.createdby;

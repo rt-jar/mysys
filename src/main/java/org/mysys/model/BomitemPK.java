@@ -12,19 +12,19 @@ public class BomitemPK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
-	@Column(insertable=false, updatable=false)
-	private long bomno;
+	@Column(name="bom_id", insertable=false, updatable=false)
+	private long bomId;
 
 	@Column(insertable=false, updatable=false)
 	private long itemid;
 
 	public BomitemPK() {
 	}
-	public long getBomno() {
-		return this.bomno;
+	public long getBomId() {
+		return this.bomId;
 	}
-	public void setBomno(long bomno) {
-		this.bomno = bomno;
+	public void setBomId(long bomId) {
+		this.bomId = bomId;
 	}
 	public long getItemid() {
 		return this.itemid;
@@ -42,14 +42,14 @@ public class BomitemPK implements Serializable {
 		}
 		BomitemPK castOther = (BomitemPK)other;
 		return 
-			(this.bomno == castOther.bomno)
+			(this.bomId == castOther.bomId)
 			&& (this.itemid == castOther.itemid);
 	}
 
 	public int hashCode() {
 		final int prime = 31;
 		int hash = 17;
-		hash = hash * prime + ((int) (this.bomno ^ (this.bomno >>> 32)));
+		hash = hash * prime + ((int) (this.bomId ^ (this.bomId >>> 32)));
 		hash = hash * prime + ((int) (this.itemid ^ (this.itemid >>> 32)));
 		
 		return hash;

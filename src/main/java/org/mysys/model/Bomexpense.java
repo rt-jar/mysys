@@ -15,9 +15,11 @@ import java.util.Date;
 public class Bomexpense implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private BigDecimal cost;
 	@Id
-	private long bomno;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private long id;
+	
+	private BigDecimal cost;
 
 	private String createdby;
 
@@ -33,7 +35,7 @@ public class Bomexpense implements Serializable {
 
 	//bi-directional many-to-one association to Bom
 	@ManyToOne
-	@JoinColumn(name="bomno",insertable=false,updatable=false)
+	@JoinColumn(name="bom_id")
 	private Bom bom;
 
 	//bi-directional many-to-one association to Site

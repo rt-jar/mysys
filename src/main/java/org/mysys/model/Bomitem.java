@@ -2,6 +2,9 @@ package org.mysys.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -24,13 +27,7 @@ public class Bomitem implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date createddt;
 
-	private String itemcode;
-
-	private String itemdesc;
-
 	private BigDecimal itemqty;
-
-	private String itemunit;
 
 	private BigDecimal itemvalue;
 
@@ -43,14 +40,18 @@ public class Bomitem implements Serializable {
 
 	//bi-directional many-to-one association to Bom
 	@ManyToOne
+	@JoinColumn(name="bom_id",insertable=false,updatable=false)
 	private Bom bom;
 
 	//bi-directional many-to-one association to Itemmaster
 	@ManyToOne
+	@JoinColumn(name="itemid",insertable=false,updatable=false)
 	private Itemmaster itemmaster;
 
 	//bi-directional many-to-one association to Site
+	@JsonIgnore
 	@ManyToOne
+	@JoinColumn(name="siteid")
 	private Site site;
 
 	public Bomitem() {
@@ -80,36 +81,12 @@ public class Bomitem implements Serializable {
 		this.createddt = createddt;
 	}
 
-	public String getItemcode() {
-		return this.itemcode;
-	}
-
-	public void setItemcode(String itemcode) {
-		this.itemcode = itemcode;
-	}
-
-	public String getItemdesc() {
-		return this.itemdesc;
-	}
-
-	public void setItemdesc(String itemdesc) {
-		this.itemdesc = itemdesc;
-	}
-
 	public BigDecimal getItemqty() {
 		return this.itemqty;
 	}
 
 	public void setItemqty(BigDecimal itemqty) {
 		this.itemqty = itemqty;
-	}
-
-	public String getItemunit() {
-		return this.itemunit;
-	}
-
-	public void setItemunit(String itemunit) {
-		this.itemunit = itemunit;
 	}
 
 	public BigDecimal getItemvalue() {

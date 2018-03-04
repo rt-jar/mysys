@@ -2,9 +2,6 @@ package org.mysys.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.Date;
 
 
@@ -31,14 +28,6 @@ public class Modulescreen implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date modifieddt;
 
-	private String moduledisplayname;
-
-	private String modulename;
-
-	private String screendisplayname;
-
-	private String screenname;
-
 	//bi-directional many-to-one association to Module
 	@ManyToOne
 	@JoinColumn(name="moduleid")
@@ -50,7 +39,6 @@ public class Modulescreen implements Serializable {
 	private Screen screen;
 
 	//bi-directional many-to-one association to Site
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="siteid")
 	private Site site;
@@ -96,38 +84,6 @@ public class Modulescreen implements Serializable {
 
 	public void setModifieddt(Date modifieddt) {
 		this.modifieddt = modifieddt;
-	}
-
-	public String getModuledisplayname() {
-		return this.moduledisplayname;
-	}
-
-	public void setModuledisplayname(String moduledisplayname) {
-		this.moduledisplayname = moduledisplayname;
-	}
-
-	public String getModulename() {
-		return this.modulename;
-	}
-
-	public void setModulename(String modulename) {
-		this.modulename = modulename;
-	}
-
-	public String getScreendisplayname() {
-		return this.screendisplayname;
-	}
-
-	public void setScreendisplayname(String screendisplayname) {
-		this.screendisplayname = screendisplayname;
-	}
-
-	public String getScreenname() {
-		return this.screenname;
-	}
-
-	public void setScreenname(String screenname) {
-		this.screenname = screenname;
 	}
 
 	public Module getModule() {

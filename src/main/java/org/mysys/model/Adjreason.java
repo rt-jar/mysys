@@ -3,7 +3,6 @@ package org.mysys.model;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -33,14 +32,6 @@ public class Adjreason implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="siteid")
 	private Site site;
-
-	//bi-directional many-to-one association to Itemstockadj
-	@OneToMany(mappedBy="adjreasonBean")
-	private List<Itemstockadj> itemstockadjs;
-
-	//bi-directional many-to-one association to Vendoritemadj
-	@OneToMany(mappedBy="adjreasonBean")
-	private List<Vendoritemadj> vendoritemadjs;
 
 	public Adjreason() {
 	}
@@ -91,50 +82,6 @@ public class Adjreason implements Serializable {
 
 	public void setSite(Site site) {
 		this.site = site;
-	}
-
-	public List<Itemstockadj> getItemstockadjs() {
-		return this.itemstockadjs;
-	}
-
-	public void setItemstockadjs(List<Itemstockadj> itemstockadjs) {
-		this.itemstockadjs = itemstockadjs;
-	}
-
-	public Itemstockadj addItemstockadj(Itemstockadj itemstockadj) {
-		getItemstockadjs().add(itemstockadj);
-		itemstockadj.setAdjreasonBean(this);
-
-		return itemstockadj;
-	}
-
-	public Itemstockadj removeItemstockadj(Itemstockadj itemstockadj) {
-		getItemstockadjs().remove(itemstockadj);
-		itemstockadj.setAdjreasonBean(null);
-
-		return itemstockadj;
-	}
-
-	public List<Vendoritemadj> getVendoritemadjs() {
-		return this.vendoritemadjs;
-	}
-
-	public void setVendoritemadjs(List<Vendoritemadj> vendoritemadjs) {
-		this.vendoritemadjs = vendoritemadjs;
-	}
-
-	public Vendoritemadj addVendoritemadj(Vendoritemadj vendoritemadj) {
-		getVendoritemadjs().add(vendoritemadj);
-		vendoritemadj.setAdjreasonBean(this);
-
-		return vendoritemadj;
-	}
-
-	public Vendoritemadj removeVendoritemadj(Vendoritemadj vendoritemadj) {
-		getVendoritemadjs().remove(vendoritemadj);
-		vendoritemadj.setAdjreasonBean(null);
-
-		return vendoritemadj;
 	}
 
 }

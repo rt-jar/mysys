@@ -40,10 +40,6 @@ public class Itemcategory implements Serializable {
 	@OneToMany(mappedBy="itemcategory")
 	private List<Itemmaster> itemmasters;
 
-	//bi-directional many-to-one association to Itemspecmaster
-	@OneToMany(mappedBy="itemcategory")
-	private List<Itemspecmaster> itemspecmasters;
-
 	public Itemcategory() {
 	}
 
@@ -123,28 +119,6 @@ public class Itemcategory implements Serializable {
 		itemmaster.setItemcategory(null);
 
 		return itemmaster;
-	}
-
-	public List<Itemspecmaster> getItemspecmasters() {
-		return this.itemspecmasters;
-	}
-
-	public void setItemspecmasters(List<Itemspecmaster> itemspecmasters) {
-		this.itemspecmasters = itemspecmasters;
-	}
-
-	public Itemspecmaster addItemspecmaster(Itemspecmaster itemspecmaster) {
-		getItemspecmasters().add(itemspecmaster);
-		itemspecmaster.setItemcategory(this);
-
-		return itemspecmaster;
-	}
-
-	public Itemspecmaster removeItemspecmaster(Itemspecmaster itemspecmaster) {
-		getItemspecmasters().remove(itemspecmaster);
-		itemspecmaster.setItemcategory(null);
-
-		return itemspecmaster;
 	}
 
 }

@@ -18,10 +18,15 @@ public class Itemrecdafterjob implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long challanno;
+	@Column(name="irj_id")
+	private long irjId;
+
+	private String acctyear;
 
 	@Temporal(TemporalType.DATE)
 	private Date challandate;
+
+	private BigDecimal challanno;
 
 	private String createdby;
 
@@ -41,8 +46,6 @@ public class Itemrecdafterjob implements Serializable {
 	private BigDecimal recptno;
 
 	private String remarks;
-
-	private String sourcevendorname;
 
 	private BigDecimal totaljobworkcost;
 
@@ -67,12 +70,20 @@ public class Itemrecdafterjob implements Serializable {
 	public Itemrecdafterjob() {
 	}
 
-	public long getChallanno() {
-		return this.challanno;
+	public long getIrjId() {
+		return this.irjId;
 	}
 
-	public void setChallanno(long challanno) {
-		this.challanno = challanno;
+	public void setIrjId(long irjId) {
+		this.irjId = irjId;
+	}
+
+	public String getAcctyear() {
+		return this.acctyear;
+	}
+
+	public void setAcctyear(String acctyear) {
+		this.acctyear = acctyear;
 	}
 
 	public Date getChallandate() {
@@ -81,6 +92,14 @@ public class Itemrecdafterjob implements Serializable {
 
 	public void setChallandate(Date challandate) {
 		this.challandate = challandate;
+	}
+
+	public BigDecimal getChallanno() {
+		return this.challanno;
+	}
+
+	public void setChallanno(BigDecimal challanno) {
+		this.challanno = challanno;
 	}
 
 	public String getCreatedby() {
@@ -145,14 +164,6 @@ public class Itemrecdafterjob implements Serializable {
 
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
-	}
-
-	public String getSourcevendorname() {
-		return this.sourcevendorname;
-	}
-
-	public void setSourcevendorname(String sourcevendorname) {
-		this.sourcevendorname = sourcevendorname;
 	}
 
 	public BigDecimal getTotaljobworkcost() {

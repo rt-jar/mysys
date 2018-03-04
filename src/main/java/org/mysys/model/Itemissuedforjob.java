@@ -18,12 +18,17 @@ public class Itemissuedforjob implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long challanno;
+	@Column(name="itj_id")
+	private long itjId;
+
+	private String acctyear;
 
 	private String carriedby;
 
 	@Temporal(TemporalType.DATE)
 	private Date challandate;
+
+	private BigDecimal challanno;
 
 	private String createdby;
 
@@ -52,13 +57,9 @@ public class Itemissuedforjob implements Serializable {
 
 	private String remarks;
 
-	private String sourcedeptname;
-
 	private BigDecimal totaljobworkcost;
 
 	private BigDecimal totalmaterialcost;
-
-	private String vendorname;
 
 	//bi-directional many-to-one association to Contact
 	@ManyToOne
@@ -82,12 +83,20 @@ public class Itemissuedforjob implements Serializable {
 	public Itemissuedforjob() {
 	}
 
-	public long getChallanno() {
-		return this.challanno;
+	public long getItjId() {
+		return this.itjId;
 	}
 
-	public void setChallanno(long challanno) {
-		this.challanno = challanno;
+	public void setItjId(long itjId) {
+		this.itjId = itjId;
+	}
+
+	public String getAcctyear() {
+		return this.acctyear;
+	}
+
+	public void setAcctyear(String acctyear) {
+		this.acctyear = acctyear;
 	}
 
 	public String getCarriedby() {
@@ -104,6 +113,14 @@ public class Itemissuedforjob implements Serializable {
 
 	public void setChallandate(Date challandate) {
 		this.challandate = challandate;
+	}
+
+	public BigDecimal getChallanno() {
+		return this.challanno;
+	}
+
+	public void setChallanno(BigDecimal challanno) {
+		this.challanno = challanno;
 	}
 
 	public String getCreatedby() {
@@ -202,14 +219,6 @@ public class Itemissuedforjob implements Serializable {
 		this.remarks = remarks;
 	}
 
-	public String getSourcedeptname() {
-		return this.sourcedeptname;
-	}
-
-	public void setSourcedeptname(String sourcedeptname) {
-		this.sourcedeptname = sourcedeptname;
-	}
-
 	public BigDecimal getTotaljobworkcost() {
 		return this.totaljobworkcost;
 	}
@@ -224,14 +233,6 @@ public class Itemissuedforjob implements Serializable {
 
 	public void setTotalmaterialcost(BigDecimal totalmaterialcost) {
 		this.totalmaterialcost = totalmaterialcost;
-	}
-
-	public String getVendorname() {
-		return this.vendorname;
-	}
-
-	public void setVendorname(String vendorname) {
-		this.vendorname = vendorname;
 	}
 
 	public Contact getContact1() {

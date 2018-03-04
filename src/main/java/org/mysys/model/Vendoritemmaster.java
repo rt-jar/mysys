@@ -15,13 +15,18 @@ import java.util.Date;
 public class Vendoritemmaster implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private VendoritemmasterPK id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="vim_id")
+	private long vimId;
 
 	private String createdby;
 
 	@Temporal(TemporalType.DATE)
 	private Date createddt;
+
+	@Temporal(TemporalType.DATE)
+	private Date fromdate;
 
 	private BigDecimal jobrate;
 
@@ -37,12 +42,12 @@ public class Vendoritemmaster implements Serializable {
 
 	//bi-directional many-to-one association to Contact
 	@ManyToOne
-	@JoinColumn(name="contactid",insertable=false,updatable=false)
+	@JoinColumn(name="contactid")
 	private Contact contact;
 
 	//bi-directional many-to-one association to Itemmaster
 	@ManyToOne
-	@JoinColumn(name="itemid",insertable=false,updatable=false)
+	@JoinColumn(name="itemid")
 	private Itemmaster itemmaster;
 
 	//bi-directional many-to-one association to Site
@@ -53,12 +58,12 @@ public class Vendoritemmaster implements Serializable {
 	public Vendoritemmaster() {
 	}
 
-	public VendoritemmasterPK getId() {
-		return this.id;
+	public long getVimId() {
+		return this.vimId;
 	}
 
-	public void setId(VendoritemmasterPK id) {
-		this.id = id;
+	public void setVimId(long vimId) {
+		this.vimId = vimId;
 	}
 
 	public String getCreatedby() {
@@ -75,6 +80,14 @@ public class Vendoritemmaster implements Serializable {
 
 	public void setCreateddt(Date createddt) {
 		this.createddt = createddt;
+	}
+
+	public Date getFromdate() {
+		return this.fromdate;
+	}
+
+	public void setFromdate(Date fromdate) {
+		this.fromdate = fromdate;
 	}
 
 	public BigDecimal getJobrate() {

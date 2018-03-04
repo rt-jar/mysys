@@ -19,6 +19,8 @@ public class Department implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long deptid;
 
+	private String consumable;
+
 	private String createdby;
 
 	@Temporal(TemporalType.DATE)
@@ -50,9 +52,13 @@ public class Department implements Serializable {
 	@OneToMany(mappedBy="department")
 	private List<Itemrecd> itemrecds;
 
-	//bi-directional many-to-one association to Itemstockadj
+	//bi-directional many-to-one association to Itemopenstock
 	@OneToMany(mappedBy="department")
-	private List<Itemstockadj> itemstockadjs;
+	private List<Itemopenstock> itemopenstocks;
+
+	//bi-directional many-to-one association to Prodinhouse
+	@OneToMany(mappedBy="department")
+	private List<Prodinhouse> prodinhouses;
 
 	public Department() {
 	}
@@ -63,6 +69,14 @@ public class Department implements Serializable {
 
 	public void setDeptid(long deptid) {
 		this.deptid = deptid;
+	}
+
+	public String getConsumable() {
+		return this.consumable;
+	}
+
+	public void setConsumable(String consumable) {
+		this.consumable = consumable;
 	}
 
 	public String getCreatedby() {
@@ -173,26 +187,48 @@ public class Department implements Serializable {
 		return itemrecd;
 	}
 
-	public List<Itemstockadj> getItemstockadjs() {
-		return this.itemstockadjs;
+	public List<Itemopenstock> getItemopenstocks() {
+		return this.itemopenstocks;
 	}
 
-	public void setItemstockadjs(List<Itemstockadj> itemstockadjs) {
-		this.itemstockadjs = itemstockadjs;
+	public void setItemopenstocks(List<Itemopenstock> itemopenstocks) {
+		this.itemopenstocks = itemopenstocks;
 	}
 
-	public Itemstockadj addItemstockadj(Itemstockadj itemstockadj) {
-		getItemstockadjs().add(itemstockadj);
-		itemstockadj.setDepartment(this);
+	public Itemopenstock addItemopenstock(Itemopenstock itemopenstock) {
+		getItemopenstocks().add(itemopenstock);
+		itemopenstock.setDepartment(this);
 
-		return itemstockadj;
+		return itemopenstock;
 	}
 
-	public Itemstockadj removeItemstockadj(Itemstockadj itemstockadj) {
-		getItemstockadjs().remove(itemstockadj);
-		itemstockadj.setDepartment(null);
+	public Itemopenstock removeItemopenstock(Itemopenstock itemopenstock) {
+		getItemopenstocks().remove(itemopenstock);
+		itemopenstock.setDepartment(null);
 
-		return itemstockadj;
+		return itemopenstock;
+	}
+
+	public List<Prodinhouse> getProdinhouses() {
+		return this.prodinhouses;
+	}
+
+	public void setProdinhouses(List<Prodinhouse> prodinhouses) {
+		this.prodinhouses = prodinhouses;
+	}
+
+	public Prodinhouse addProdinhous(Prodinhouse prodinhous) {
+		getProdinhouses().add(prodinhous);
+		prodinhous.setDepartment(this);
+
+		return prodinhous;
+	}
+
+	public Prodinhouse removeProdinhous(Prodinhouse prodinhous) {
+		getProdinhouses().remove(prodinhous);
+		prodinhous.setDepartment(null);
+
+		return prodinhous;
 	}
 
 }

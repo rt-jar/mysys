@@ -2,9 +2,7 @@ package org.mysys.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +18,10 @@ public class Itemissue implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long issueno;
+	@Column(name="it_id")
+	private long itId;
+
+	private String acctyear;
 
 	private String createdby;
 
@@ -31,6 +32,8 @@ public class Itemissue implements Serializable {
 	private Date issuedate;
 
 	private String issuedeptname;
+
+	private BigDecimal issueno;
 
 	private String modifiedby;
 
@@ -62,19 +65,26 @@ public class Itemissue implements Serializable {
 	private User user;
 
 	//bi-directional many-to-one association to Itemissuedtl
-	@JsonIgnore
 	@OneToMany(mappedBy="itemissue")
 	private List<Itemissuedtl> itemissuedtls;
 
 	public Itemissue() {
 	}
 
-	public long getIssueno() {
-		return this.issueno;
+	public long getItId() {
+		return this.itId;
 	}
 
-	public void setIssueno(long issueno) {
-		this.issueno = issueno;
+	public void setItId(long itId) {
+		this.itId = itId;
+	}
+
+	public String getAcctyear() {
+		return this.acctyear;
+	}
+
+	public void setAcctyear(String acctyear) {
+		this.acctyear = acctyear;
 	}
 
 	public String getCreatedby() {
@@ -107,6 +117,14 @@ public class Itemissue implements Serializable {
 
 	public void setIssuedeptname(String issuedeptname) {
 		this.issuedeptname = issuedeptname;
+	}
+
+	public BigDecimal getIssueno() {
+		return this.issueno;
+	}
+
+	public void setIssueno(BigDecimal issueno) {
+		this.issueno = issueno;
 	}
 
 	public String getModifiedby() {

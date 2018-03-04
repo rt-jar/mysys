@@ -2,6 +2,9 @@ package org.mysys.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -18,17 +21,12 @@ public class Prodrecdafterjobdtl implements Serializable {
 	@EmbeddedId
 	private ProdrecdafterjobdtlPK id;
 
-	@Temporal(TemporalType.DATE)
-	private Date challandate;
+	private String acctyear;
 
 	private String createdby;
 
 	@Temporal(TemporalType.DATE)
 	private Date createddt;
-
-	private String itemcode;
-
-	private String itemdesc;
 
 	private BigDecimal itemqty;
 
@@ -52,10 +50,11 @@ public class Prodrecdafterjobdtl implements Serializable {
 
 	//bi-directional many-to-one association to Itemrecdafterjob
 	@ManyToOne
-	@JoinColumn(name="challanno",insertable=false,updatable=false)
+	@JoinColumn(name="prj_id",insertable=false,updatable=false)
 	private Itemrecdafterjob itemrecdafterjob;
 
 	//bi-directional many-to-one association to Site
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="siteid")
 	private Site site;
@@ -71,12 +70,12 @@ public class Prodrecdafterjobdtl implements Serializable {
 		this.id = id;
 	}
 
-	public Date getChallandate() {
-		return this.challandate;
+	public String getAcctyear() {
+		return this.acctyear;
 	}
 
-	public void setChallandate(Date challandate) {
-		this.challandate = challandate;
+	public void setAcctyear(String acctyear) {
+		this.acctyear = acctyear;
 	}
 
 	public String getCreatedby() {
@@ -93,22 +92,6 @@ public class Prodrecdafterjobdtl implements Serializable {
 
 	public void setCreateddt(Date createddt) {
 		this.createddt = createddt;
-	}
-
-	public String getItemcode() {
-		return this.itemcode;
-	}
-
-	public void setItemcode(String itemcode) {
-		this.itemcode = itemcode;
-	}
-
-	public String getItemdesc() {
-		return this.itemdesc;
-	}
-
-	public void setItemdesc(String itemdesc) {
-		this.itemdesc = itemdesc;
 	}
 
 	public BigDecimal getItemqty() {

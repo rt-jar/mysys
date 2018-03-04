@@ -169,10 +169,6 @@ public class Site implements Serializable {
 	@OneToMany(mappedBy="site")
 	private List<Itemspecmaster> itemspecmasters;
 
-	//bi-directional many-to-one association to Itemstockadj
-	@OneToMany(mappedBy="site")
-	private List<Itemstockadj> itemstockadjs;
-
 	//bi-directional many-to-one association to Itemunitmaster
 	@OneToMany(mappedBy="site")
 	private List<Itemunitmaster> itemunitmasters;
@@ -224,6 +220,38 @@ public class Site implements Serializable {
 	//bi-directional many-to-one association to Vendoritemmaster
 	@OneToMany(mappedBy="site")
 	private List<Vendoritemmaster> vendoritemmasters;
+
+	//bi-directional many-to-one association to Auditlog
+	@OneToMany(mappedBy="site")
+	private List<Auditlog> auditlogs;
+
+	//bi-directional many-to-one association to Errorlog
+	@OneToMany(mappedBy="site")
+	private List<Errorlog> errorlogs;
+
+	//bi-directional many-to-one association to Itemopenstock
+	@OneToMany(mappedBy="site")
+	private List<Itemopenstock> itemopenstocks;
+
+	//bi-directional many-to-one association to Itemopenstockdtl
+	@OneToMany(mappedBy="site")
+	private List<Itemopenstockdtl> itemopenstockdtls;
+
+	//bi-directional many-to-one association to Prodinhouse
+	@OneToMany(mappedBy="site")
+	private List<Prodinhouse> prodinhouses;
+
+	//bi-directional many-to-one association to Prodinhouseitem
+	@OneToMany(mappedBy="site")
+	private List<Prodinhouseitem> prodinhouseitems;
+
+	//bi-directional many-to-one association to Prodinhouseprod
+	@OneToMany(mappedBy="site")
+	private List<Prodinhouseprod> prodinhouseprods;
+
+	//bi-directional many-to-one association to Vendoritemadjdtl
+	@OneToMany(mappedBy="site")
+	private List<Vendoritemadjdtl> vendoritemadjdtls;
 
 	public Site() {
 	}
@@ -1018,28 +1046,6 @@ public class Site implements Serializable {
 		return itemspecmaster;
 	}
 
-	public List<Itemstockadj> getItemstockadjs() {
-		return this.itemstockadjs;
-	}
-
-	public void setItemstockadjs(List<Itemstockadj> itemstockadjs) {
-		this.itemstockadjs = itemstockadjs;
-	}
-
-	public Itemstockadj addItemstockadj(Itemstockadj itemstockadj) {
-		getItemstockadjs().add(itemstockadj);
-		itemstockadj.setSite(this);
-
-		return itemstockadj;
-	}
-
-	public Itemstockadj removeItemstockadj(Itemstockadj itemstockadj) {
-		getItemstockadjs().remove(itemstockadj);
-		itemstockadj.setSite(null);
-
-		return itemstockadj;
-	}
-
 	public List<Itemunitmaster> getItemunitmasters() {
 		return this.itemunitmasters;
 	}
@@ -1324,6 +1330,182 @@ public class Site implements Serializable {
 		vendoritemmaster.setSite(null);
 
 		return vendoritemmaster;
+	}
+
+	public List<Auditlog> getAuditlogs() {
+		return this.auditlogs;
+	}
+
+	public void setAuditlogs(List<Auditlog> auditlogs) {
+		this.auditlogs = auditlogs;
+	}
+
+	public Auditlog addAuditlog(Auditlog auditlog) {
+		getAuditlogs().add(auditlog);
+		auditlog.setSite(this);
+
+		return auditlog;
+	}
+
+	public Auditlog removeAuditlog(Auditlog auditlog) {
+		getAuditlogs().remove(auditlog);
+		auditlog.setSite(null);
+
+		return auditlog;
+	}
+
+	public List<Errorlog> getErrorlogs() {
+		return this.errorlogs;
+	}
+
+	public void setErrorlogs(List<Errorlog> errorlogs) {
+		this.errorlogs = errorlogs;
+	}
+
+	public Errorlog addErrorlog(Errorlog errorlog) {
+		getErrorlogs().add(errorlog);
+		errorlog.setSite(this);
+
+		return errorlog;
+	}
+
+	public Errorlog removeErrorlog(Errorlog errorlog) {
+		getErrorlogs().remove(errorlog);
+		errorlog.setSite(null);
+
+		return errorlog;
+	}
+
+	public List<Itemopenstock> getItemopenstocks() {
+		return this.itemopenstocks;
+	}
+
+	public void setItemopenstocks(List<Itemopenstock> itemopenstocks) {
+		this.itemopenstocks = itemopenstocks;
+	}
+
+	public Itemopenstock addItemopenstock(Itemopenstock itemopenstock) {
+		getItemopenstocks().add(itemopenstock);
+		itemopenstock.setSite(this);
+
+		return itemopenstock;
+	}
+
+	public Itemopenstock removeItemopenstock(Itemopenstock itemopenstock) {
+		getItemopenstocks().remove(itemopenstock);
+		itemopenstock.setSite(null);
+
+		return itemopenstock;
+	}
+
+	public List<Itemopenstockdtl> getItemopenstockdtls() {
+		return this.itemopenstockdtls;
+	}
+
+	public void setItemopenstockdtls(List<Itemopenstockdtl> itemopenstockdtls) {
+		this.itemopenstockdtls = itemopenstockdtls;
+	}
+
+	public Itemopenstockdtl addItemopenstockdtl(Itemopenstockdtl itemopenstockdtl) {
+		getItemopenstockdtls().add(itemopenstockdtl);
+		itemopenstockdtl.setSite(this);
+
+		return itemopenstockdtl;
+	}
+
+	public Itemopenstockdtl removeItemopenstockdtl(Itemopenstockdtl itemopenstockdtl) {
+		getItemopenstockdtls().remove(itemopenstockdtl);
+		itemopenstockdtl.setSite(null);
+
+		return itemopenstockdtl;
+	}
+
+	public List<Prodinhouse> getProdinhouses() {
+		return this.prodinhouses;
+	}
+
+	public void setProdinhouses(List<Prodinhouse> prodinhouses) {
+		this.prodinhouses = prodinhouses;
+	}
+
+	public Prodinhouse addProdinhous(Prodinhouse prodinhous) {
+		getProdinhouses().add(prodinhous);
+		prodinhous.setSite(this);
+
+		return prodinhous;
+	}
+
+	public Prodinhouse removeProdinhous(Prodinhouse prodinhous) {
+		getProdinhouses().remove(prodinhous);
+		prodinhous.setSite(null);
+
+		return prodinhous;
+	}
+
+	public List<Prodinhouseitem> getProdinhouseitems() {
+		return this.prodinhouseitems;
+	}
+
+	public void setProdinhouseitems(List<Prodinhouseitem> prodinhouseitems) {
+		this.prodinhouseitems = prodinhouseitems;
+	}
+
+	public Prodinhouseitem addProdinhouseitem(Prodinhouseitem prodinhouseitem) {
+		getProdinhouseitems().add(prodinhouseitem);
+		prodinhouseitem.setSite(this);
+
+		return prodinhouseitem;
+	}
+
+	public Prodinhouseitem removeProdinhouseitem(Prodinhouseitem prodinhouseitem) {
+		getProdinhouseitems().remove(prodinhouseitem);
+		prodinhouseitem.setSite(null);
+
+		return prodinhouseitem;
+	}
+
+	public List<Prodinhouseprod> getProdinhouseprods() {
+		return this.prodinhouseprods;
+	}
+
+	public void setProdinhouseprods(List<Prodinhouseprod> prodinhouseprods) {
+		this.prodinhouseprods = prodinhouseprods;
+	}
+
+	public Prodinhouseprod addProdinhouseprod(Prodinhouseprod prodinhouseprod) {
+		getProdinhouseprods().add(prodinhouseprod);
+		prodinhouseprod.setSite(this);
+
+		return prodinhouseprod;
+	}
+
+	public Prodinhouseprod removeProdinhouseprod(Prodinhouseprod prodinhouseprod) {
+		getProdinhouseprods().remove(prodinhouseprod);
+		prodinhouseprod.setSite(null);
+
+		return prodinhouseprod;
+	}
+
+	public List<Vendoritemadjdtl> getVendoritemadjdtls() {
+		return this.vendoritemadjdtls;
+	}
+
+	public void setVendoritemadjdtls(List<Vendoritemadjdtl> vendoritemadjdtls) {
+		this.vendoritemadjdtls = vendoritemadjdtls;
+	}
+
+	public Vendoritemadjdtl addVendoritemadjdtl(Vendoritemadjdtl vendoritemadjdtl) {
+		getVendoritemadjdtls().add(vendoritemadjdtl);
+		vendoritemadjdtl.setSite(this);
+
+		return vendoritemadjdtl;
+	}
+
+	public Vendoritemadjdtl removeVendoritemadjdtl(Vendoritemadjdtl vendoritemadjdtl) {
+		getVendoritemadjdtls().remove(vendoritemadjdtl);
+		vendoritemadjdtl.setSite(null);
+
+		return vendoritemadjdtl;
 	}
 
 }

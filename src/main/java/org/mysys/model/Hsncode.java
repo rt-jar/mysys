@@ -18,14 +18,12 @@ public class Hsncode implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long hsncodeid;
+	private String hsncode;
 
 	private String createdby;
 
 	@Temporal(TemporalType.DATE)
 	private Date createddt;
-
-	private String hsncode;
 
 	private String modifiedby;
 
@@ -50,12 +48,12 @@ public class Hsncode implements Serializable {
 	public Hsncode() {
 	}
 
-	public long getHsncodeid() {
-		return this.hsncodeid;
+	public String getHsncode() {
+		return this.hsncode;
 	}
 
-	public void setHsncodeid(long hsncodeid) {
-		this.hsncodeid = hsncodeid;
+	public void setHsncode(String hsncode) {
+		this.hsncode = hsncode;
 	}
 
 	public String getCreatedby() {
@@ -72,14 +70,6 @@ public class Hsncode implements Serializable {
 
 	public void setCreateddt(Date createddt) {
 		this.createddt = createddt;
-	}
-
-	public String getHsncode() {
-		return this.hsncode;
-	}
-
-	public void setHsncode(String hsncode) {
-		this.hsncode = hsncode;
 	}
 
 	public String getModifiedby() {

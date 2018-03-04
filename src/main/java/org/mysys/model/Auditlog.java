@@ -7,63 +7,62 @@ import java.util.Date;
 
 
 /**
- * The persistent class for the supplieritemmaster database table.
+ * The persistent class for the auditlog database table.
  * 
  */
 @Entity
-@NamedQuery(name="Supplieritemmaster.findAll", query="SELECT s FROM Supplieritemmaster s")
-public class Supplieritemmaster implements Serializable {
+@NamedQuery(name="Auditlog.findAll", query="SELECT a FROM Auditlog a")
+public class Auditlog implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Temporal(TemporalType.DATE)
+	private Date auditdate;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="sim_id")
-	private long simId;
+	private BigDecimal auditid;
 
 	private String createdby;
 
 	@Temporal(TemporalType.DATE)
 	private Date createddt;
 
-	@Temporal(TemporalType.DATE)
-	private Date fromdate;
+	private String eventdesc;
+
+	private String eventname;
 
 	private String modifiedby;
 
 	@Temporal(TemporalType.DATE)
 	private Date modifieddt;
 
-	private BigDecimal rate;
-
 	private String remarks;
 
-	@Temporal(TemporalType.DATE)
-	private Date todate;
+	private BigDecimal userid;
 
-	//bi-directional many-to-one association to Contact
-	@ManyToOne
-	@JoinColumn(name="contactid")
-	private Contact contact;
-
-	//bi-directional many-to-one association to Itemmaster
-	@ManyToOne
-	@JoinColumn(name="itemid")
-	private Itemmaster itemmaster;
+	private String username;
 
 	//bi-directional many-to-one association to Site
 	@ManyToOne
 	@JoinColumn(name="siteid")
 	private Site site;
 
-	public Supplieritemmaster() {
+	public Auditlog() {
 	}
 
-	public long getSimId() {
-		return this.simId;
+	public Date getAuditdate() {
+		return this.auditdate;
 	}
 
-	public void setSimId(long simId) {
-		this.simId = simId;
+	public void setAuditdate(Date auditdate) {
+		this.auditdate = auditdate;
+	}
+
+	public BigDecimal getAuditid() {
+		return this.auditid;
+	}
+
+	public void setAuditid(BigDecimal auditid) {
+		this.auditid = auditid;
 	}
 
 	public String getCreatedby() {
@@ -82,12 +81,20 @@ public class Supplieritemmaster implements Serializable {
 		this.createddt = createddt;
 	}
 
-	public Date getFromdate() {
-		return this.fromdate;
+	public String getEventdesc() {
+		return this.eventdesc;
 	}
 
-	public void setFromdate(Date fromdate) {
-		this.fromdate = fromdate;
+	public void setEventdesc(String eventdesc) {
+		this.eventdesc = eventdesc;
+	}
+
+	public String getEventname() {
+		return this.eventname;
+	}
+
+	public void setEventname(String eventname) {
+		this.eventname = eventname;
 	}
 
 	public String getModifiedby() {
@@ -106,14 +113,6 @@ public class Supplieritemmaster implements Serializable {
 		this.modifieddt = modifieddt;
 	}
 
-	public BigDecimal getRate() {
-		return this.rate;
-	}
-
-	public void setRate(BigDecimal rate) {
-		this.rate = rate;
-	}
-
 	public String getRemarks() {
 		return this.remarks;
 	}
@@ -122,28 +121,20 @@ public class Supplieritemmaster implements Serializable {
 		this.remarks = remarks;
 	}
 
-	public Date getTodate() {
-		return this.todate;
+	public BigDecimal getUserid() {
+		return this.userid;
 	}
 
-	public void setTodate(Date todate) {
-		this.todate = todate;
+	public void setUserid(BigDecimal userid) {
+		this.userid = userid;
 	}
 
-	public Contact getContact() {
-		return this.contact;
+	public String getUsername() {
+		return this.username;
 	}
 
-	public void setContact(Contact contact) {
-		this.contact = contact;
-	}
-
-	public Itemmaster getItemmaster() {
-		return this.itemmaster;
-	}
-
-	public void setItemmaster(Itemmaster itemmaster) {
-		this.itemmaster = itemmaster;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public Site getSite() {

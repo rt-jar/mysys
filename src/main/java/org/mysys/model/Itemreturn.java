@@ -2,6 +2,7 @@ package org.mysys.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -17,17 +18,20 @@ public class Itemreturn implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long challanno;
+	@Column(name="itr_id")
+	private long itrId;
+
+	private String acctyear;
 
 	@Temporal(TemporalType.DATE)
 	private Date challandate;
+
+	private BigDecimal challanno;
 
 	private String createdby;
 
 	@Temporal(TemporalType.DATE)
 	private Date createddt;
-
-	private String customername;
 
 	private String deliverymode;
 
@@ -37,8 +41,6 @@ public class Itemreturn implements Serializable {
 	private Date modifieddt;
 
 	private String remarks;
-
-	private String sourcedeptname;
 
 	private String vehicleregnno;
 
@@ -64,12 +66,20 @@ public class Itemreturn implements Serializable {
 	public Itemreturn() {
 	}
 
-	public long getChallanno() {
-		return this.challanno;
+	public long getItrId() {
+		return this.itrId;
 	}
 
-	public void setChallanno(long challanno) {
-		this.challanno = challanno;
+	public void setItrId(long itrId) {
+		this.itrId = itrId;
+	}
+
+	public String getAcctyear() {
+		return this.acctyear;
+	}
+
+	public void setAcctyear(String acctyear) {
+		this.acctyear = acctyear;
 	}
 
 	public Date getChallandate() {
@@ -78,6 +88,14 @@ public class Itemreturn implements Serializable {
 
 	public void setChallandate(Date challandate) {
 		this.challandate = challandate;
+	}
+
+	public BigDecimal getChallanno() {
+		return this.challanno;
+	}
+
+	public void setChallanno(BigDecimal challanno) {
+		this.challanno = challanno;
 	}
 
 	public String getCreatedby() {
@@ -94,14 +112,6 @@ public class Itemreturn implements Serializable {
 
 	public void setCreateddt(Date createddt) {
 		this.createddt = createddt;
-	}
-
-	public String getCustomername() {
-		return this.customername;
-	}
-
-	public void setCustomername(String customername) {
-		this.customername = customername;
 	}
 
 	public String getDeliverymode() {
@@ -134,14 +144,6 @@ public class Itemreturn implements Serializable {
 
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
-	}
-
-	public String getSourcedeptname() {
-		return this.sourcedeptname;
-	}
-
-	public void setSourcedeptname(String sourcedeptname) {
-		this.sourcedeptname = sourcedeptname;
 	}
 
 	public String getVehicleregnno() {

@@ -2,6 +2,9 @@ package org.mysys.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -18,19 +21,12 @@ public class Itemissuedforjobdtl implements Serializable {
 	@EmbeddedId
 	private ItemissuedforjobdtlPK id;
 
-	@Temporal(TemporalType.DATE)
-	private Date challandate;
+	private String acctyear;
 
 	private String createdby;
 
 	@Temporal(TemporalType.DATE)
 	private Date createddt;
-
-	private String hsncode;
-
-	private String itemcode;
-
-	private String itemdesc;
 
 	private BigDecimal itemqty;
 
@@ -53,12 +49,12 @@ public class Itemissuedforjobdtl implements Serializable {
 
 	//bi-directional many-to-one association to Hsncode
 	@ManyToOne
-	@JoinColumn(name="hsncodeid")
+	@JoinColumn(name="hsncode",insertable=false,updatable=false)
 	private Hsncode hsncodeBean;
 
 	//bi-directional many-to-one association to Itemissuedforjob
 	@ManyToOne
-	@JoinColumn(name="challanno",insertable=false,updatable=false)
+	@JoinColumn(name="itj_id",insertable=false,updatable=false)
 	private Itemissuedforjob itemissuedforjob;
 
 	//bi-directional many-to-one association to Itemmaster
@@ -67,6 +63,7 @@ public class Itemissuedforjobdtl implements Serializable {
 	private Itemmaster itemmaster;
 
 	//bi-directional many-to-one association to Site
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="siteid")
 	private Site site;
@@ -82,12 +79,12 @@ public class Itemissuedforjobdtl implements Serializable {
 		this.id = id;
 	}
 
-	public Date getChallandate() {
-		return this.challandate;
+	public String getAcctyear() {
+		return this.acctyear;
 	}
 
-	public void setChallandate(Date challandate) {
-		this.challandate = challandate;
+	public void setAcctyear(String acctyear) {
+		this.acctyear = acctyear;
 	}
 
 	public String getCreatedby() {
@@ -104,30 +101,6 @@ public class Itemissuedforjobdtl implements Serializable {
 
 	public void setCreateddt(Date createddt) {
 		this.createddt = createddt;
-	}
-
-	public String getHsncode() {
-		return this.hsncode;
-	}
-
-	public void setHsncode(String hsncode) {
-		this.hsncode = hsncode;
-	}
-
-	public String getItemcode() {
-		return this.itemcode;
-	}
-
-	public void setItemcode(String itemcode) {
-		this.itemcode = itemcode;
-	}
-
-	public String getItemdesc() {
-		return this.itemdesc;
-	}
-
-	public void setItemdesc(String itemdesc) {
-		this.itemdesc = itemdesc;
 	}
 
 	public BigDecimal getItemqty() {

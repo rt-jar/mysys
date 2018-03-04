@@ -29,7 +29,7 @@ public class Itemunitmaster implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date modifieddt;
 
-	private String unitdisplayformat;
+	private String unitformat;
 
 	private String unitname;
 
@@ -89,12 +89,12 @@ public class Itemunitmaster implements Serializable {
 		this.modifieddt = modifieddt;
 	}
 
-	public String getUnitdisplayformat() {
-		return this.unitdisplayformat;
+	public String getUnitformat() {
+		return this.unitformat;
 	}
 
-	public void setUnitdisplayformat(String unitdisplayformat) {
-		this.unitdisplayformat = unitdisplayformat;
+	public void setUnitformat(String unitformat) {
+		this.unitformat = unitformat;
 	}
 
 	public String getUnitname() {

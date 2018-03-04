@@ -2,6 +2,9 @@ package org.mysys.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -18,10 +21,9 @@ public class Itemreturndtl implements Serializable {
 	@EmbeddedId
 	private ItemreturndtlPK id;
 
-	private BigDecimal amount;
+	private String acctyear;
 
-	@Temporal(TemporalType.DATE)
-	private Date challandate;
+	private BigDecimal amount;
 
 	private String controlno;
 
@@ -31,10 +33,6 @@ public class Itemreturndtl implements Serializable {
 	private Date createddt;
 
 	private String customerchallanno;
-
-	private String itemcode;
-
-	private String itemdesc;
 
 	private BigDecimal itemqty;
 
@@ -49,6 +47,8 @@ public class Itemreturndtl implements Serializable {
 
 	private BigDecimal rate;
 
+	private String returnable;
+
 	//bi-directional many-to-one association to Itemmaster
 	@ManyToOne
 	@JoinColumn(name="itemid",insertable=false,updatable=false)
@@ -56,10 +56,11 @@ public class Itemreturndtl implements Serializable {
 
 	//bi-directional many-to-one association to Itemreturn
 	@ManyToOne
-	@JoinColumn(name="challanno",insertable=false,updatable=false)
+	@JoinColumn(name="itr_id",insertable=false,updatable=false)
 	private Itemreturn itemreturn;
 
 	//bi-directional many-to-one association to Site
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="siteid")
 	private Site site;
@@ -75,20 +76,20 @@ public class Itemreturndtl implements Serializable {
 		this.id = id;
 	}
 
+	public String getAcctyear() {
+		return this.acctyear;
+	}
+
+	public void setAcctyear(String acctyear) {
+		this.acctyear = acctyear;
+	}
+
 	public BigDecimal getAmount() {
 		return this.amount;
 	}
 
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
-	}
-
-	public Date getChallandate() {
-		return this.challandate;
-	}
-
-	public void setChallandate(Date challandate) {
-		this.challandate = challandate;
 	}
 
 	public String getControlno() {
@@ -121,22 +122,6 @@ public class Itemreturndtl implements Serializable {
 
 	public void setCustomerchallanno(String customerchallanno) {
 		this.customerchallanno = customerchallanno;
-	}
-
-	public String getItemcode() {
-		return this.itemcode;
-	}
-
-	public void setItemcode(String itemcode) {
-		this.itemcode = itemcode;
-	}
-
-	public String getItemdesc() {
-		return this.itemdesc;
-	}
-
-	public void setItemdesc(String itemdesc) {
-		this.itemdesc = itemdesc;
 	}
 
 	public BigDecimal getItemqty() {
@@ -185,6 +170,14 @@ public class Itemreturndtl implements Serializable {
 
 	public void setRate(BigDecimal rate) {
 		this.rate = rate;
+	}
+
+	public String getReturnable() {
+		return this.returnable;
+	}
+
+	public void setReturnable(String returnable) {
+		this.returnable = returnable;
 	}
 
 	public Itemmaster getItemmaster() {

@@ -2,49 +2,39 @@ package org.mysys.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.math.BigDecimal;
 import java.util.Date;
 
 
 /**
- * The persistent class for the itemissuedtl database table.
+ * The persistent class for the itemopenstockdtl database table.
  * 
  */
 @Entity
-@NamedQuery(name="Itemissuedtl.findAll", query="SELECT i FROM Itemissuedtl i")
-public class Itemissuedtl implements Serializable {
+@NamedQuery(name="Itemopenstockdtl.findAll", query="SELECT i FROM Itemopenstockdtl i")
+public class Itemopenstockdtl implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	private ItemissuedtlPK id;
+	private ItemopenstockdtlPK id;
 
-	private String acctyear;
+	private BigDecimal amount;
 
 	private String createdby;
 
 	@Temporal(TemporalType.DATE)
 	private Date createddt;
 
-	private String itemnit;
-
 	private String modifiedby;
 
 	@Temporal(TemporalType.DATE)
 	private Date modifieddt;
 
-	private String operation;
-
-	private BigDecimal qtyissued;
-
 	private BigDecimal rate;
 
-	//bi-directional many-to-one association to Itemissue
-	@ManyToOne
-	@JoinColumn(name="it_id",insertable=false,updatable=false)
-	private Itemissue itemissue;
+	private String remarks;
+
+	private BigDecimal stockinhand;
 
 	//bi-directional many-to-one association to Itemmaster
 	@ManyToOne
@@ -52,28 +42,27 @@ public class Itemissuedtl implements Serializable {
 	private Itemmaster itemmaster;
 
 	//bi-directional many-to-one association to Site
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="siteid")
 	private Site site;
 
-	public Itemissuedtl() {
+	public Itemopenstockdtl() {
 	}
 
-	public ItemissuedtlPK getId() {
+	public ItemopenstockdtlPK getId() {
 		return this.id;
 	}
 
-	public void setId(ItemissuedtlPK id) {
+	public void setId(ItemopenstockdtlPK id) {
 		this.id = id;
 	}
 
-	public String getAcctyear() {
-		return this.acctyear;
+	public BigDecimal getAmount() {
+		return this.amount;
 	}
 
-	public void setAcctyear(String acctyear) {
-		this.acctyear = acctyear;
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
 	}
 
 	public String getCreatedby() {
@@ -92,14 +81,6 @@ public class Itemissuedtl implements Serializable {
 		this.createddt = createddt;
 	}
 
-	public String getItemnit() {
-		return this.itemnit;
-	}
-
-	public void setItemnit(String itemnit) {
-		this.itemnit = itemnit;
-	}
-
 	public String getModifiedby() {
 		return this.modifiedby;
 	}
@@ -116,22 +97,6 @@ public class Itemissuedtl implements Serializable {
 		this.modifieddt = modifieddt;
 	}
 
-	public String getOperation() {
-		return this.operation;
-	}
-
-	public void setOperation(String operation) {
-		this.operation = operation;
-	}
-
-	public BigDecimal getQtyissued() {
-		return this.qtyissued;
-	}
-
-	public void setQtyissued(BigDecimal qtyissued) {
-		this.qtyissued = qtyissued;
-	}
-
 	public BigDecimal getRate() {
 		return this.rate;
 	}
@@ -140,12 +105,20 @@ public class Itemissuedtl implements Serializable {
 		this.rate = rate;
 	}
 
-	public Itemissue getItemissue() {
-		return this.itemissue;
+	public String getRemarks() {
+		return this.remarks;
 	}
 
-	public void setItemissue(Itemissue itemissue) {
-		this.itemissue = itemissue;
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+
+	public BigDecimal getStockinhand() {
+		return this.stockinhand;
+	}
+
+	public void setStockinhand(BigDecimal stockinhand) {
+		this.stockinhand = stockinhand;
 	}
 
 	public Itemmaster getItemmaster() {

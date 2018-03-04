@@ -10,46 +10,43 @@ import java.util.Date;
 
 
 /**
- * The persistent class for the itemissuedtl database table.
+ * The persistent class for the prodinhouseitem database table.
  * 
  */
 @Entity
-@NamedQuery(name="Itemissuedtl.findAll", query="SELECT i FROM Itemissuedtl i")
-public class Itemissuedtl implements Serializable {
+@NamedQuery(name="Prodinhouseitem.findAll", query="SELECT p FROM Prodinhouseitem p")
+public class Prodinhouseitem implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	private ItemissuedtlPK id;
-
-	private String acctyear;
+	private ProdinhouseitemPK id;
 
 	private String createdby;
 
 	@Temporal(TemporalType.DATE)
 	private Date createddt;
 
-	private String itemnit;
-
 	private String modifiedby;
 
 	@Temporal(TemporalType.DATE)
 	private Date modifieddt;
 
-	private String operation;
+	private BigDecimal qty;
 
-	private BigDecimal qtyissued;
-
-	private BigDecimal rate;
-
-	//bi-directional many-to-one association to Itemissue
+	//bi-directional many-to-one association to Bom
 	@ManyToOne
-	@JoinColumn(name="it_id",insertable=false,updatable=false)
-	private Itemissue itemissue;
+	@JoinColumn(name="bom_id",insertable=false,updatable=false)
+	private Bom bom;
 
 	//bi-directional many-to-one association to Itemmaster
 	@ManyToOne
 	@JoinColumn(name="itemid",insertable=false,updatable=false)
 	private Itemmaster itemmaster;
+
+	//bi-directional many-to-one association to Prodinhouse
+	@ManyToOne
+	@JoinColumn(name="pih_id",insertable=false,updatable=false)
+	private Prodinhouse prodinhouse;
 
 	//bi-directional many-to-one association to Site
 	@JsonIgnore
@@ -57,23 +54,15 @@ public class Itemissuedtl implements Serializable {
 	@JoinColumn(name="siteid")
 	private Site site;
 
-	public Itemissuedtl() {
+	public Prodinhouseitem() {
 	}
 
-	public ItemissuedtlPK getId() {
+	public ProdinhouseitemPK getId() {
 		return this.id;
 	}
 
-	public void setId(ItemissuedtlPK id) {
+	public void setId(ProdinhouseitemPK id) {
 		this.id = id;
-	}
-
-	public String getAcctyear() {
-		return this.acctyear;
-	}
-
-	public void setAcctyear(String acctyear) {
-		this.acctyear = acctyear;
 	}
 
 	public String getCreatedby() {
@@ -92,14 +81,6 @@ public class Itemissuedtl implements Serializable {
 		this.createddt = createddt;
 	}
 
-	public String getItemnit() {
-		return this.itemnit;
-	}
-
-	public void setItemnit(String itemnit) {
-		this.itemnit = itemnit;
-	}
-
 	public String getModifiedby() {
 		return this.modifiedby;
 	}
@@ -116,36 +97,20 @@ public class Itemissuedtl implements Serializable {
 		this.modifieddt = modifieddt;
 	}
 
-	public String getOperation() {
-		return this.operation;
+	public BigDecimal getQty() {
+		return this.qty;
 	}
 
-	public void setOperation(String operation) {
-		this.operation = operation;
+	public void setQty(BigDecimal qty) {
+		this.qty = qty;
 	}
 
-	public BigDecimal getQtyissued() {
-		return this.qtyissued;
+	public Bom getBom() {
+		return this.bom;
 	}
 
-	public void setQtyissued(BigDecimal qtyissued) {
-		this.qtyissued = qtyissued;
-	}
-
-	public BigDecimal getRate() {
-		return this.rate;
-	}
-
-	public void setRate(BigDecimal rate) {
-		this.rate = rate;
-	}
-
-	public Itemissue getItemissue() {
-		return this.itemissue;
-	}
-
-	public void setItemissue(Itemissue itemissue) {
-		this.itemissue = itemissue;
+	public void setBom(Bom bom) {
+		this.bom = bom;
 	}
 
 	public Itemmaster getItemmaster() {
@@ -154,6 +119,14 @@ public class Itemissuedtl implements Serializable {
 
 	public void setItemmaster(Itemmaster itemmaster) {
 		this.itemmaster = itemmaster;
+	}
+
+	public Prodinhouse getProdinhouse() {
+		return this.prodinhouse;
+	}
+
+	public void setProdinhouse(Prodinhouse prodinhouse) {
+		this.prodinhouse = prodinhouse;
 	}
 
 	public Site getSite() {

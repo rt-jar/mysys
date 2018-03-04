@@ -40,10 +40,6 @@ public class Itemgroup implements Serializable {
 	@OneToMany(mappedBy="itemgroup")
 	private List<Itemmaster> itemmasters;
 
-	//bi-directional many-to-one association to Itemspecmaster
-	@OneToMany(mappedBy="itemgroup")
-	private List<Itemspecmaster> itemspecmasters;
-
 	public Itemgroup() {
 	}
 
@@ -123,28 +119,6 @@ public class Itemgroup implements Serializable {
 		itemmaster.setItemgroup(null);
 
 		return itemmaster;
-	}
-
-	public List<Itemspecmaster> getItemspecmasters() {
-		return this.itemspecmasters;
-	}
-
-	public void setItemspecmasters(List<Itemspecmaster> itemspecmasters) {
-		this.itemspecmasters = itemspecmasters;
-	}
-
-	public Itemspecmaster addItemspecmaster(Itemspecmaster itemspecmaster) {
-		getItemspecmasters().add(itemspecmaster);
-		itemspecmaster.setItemgroup(this);
-
-		return itemspecmaster;
-	}
-
-	public Itemspecmaster removeItemspecmaster(Itemspecmaster itemspecmaster) {
-		getItemspecmasters().remove(itemspecmaster);
-		itemspecmaster.setItemgroup(null);
-
-		return itemspecmaster;
 	}
 
 }

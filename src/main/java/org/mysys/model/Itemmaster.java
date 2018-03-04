@@ -24,16 +24,10 @@ public class Itemmaster implements Serializable {
 
 	private BigDecimal conversionrate;
 
-	private String conversionunit;
-
 	private String createdby;
 
 	@Temporal(TemporalType.DATE)
 	private Date createddt;
-
-	private String hsncode;
-
-	private String incomingunit;
 
 	private String itemcode;
 
@@ -55,8 +49,6 @@ public class Itemmaster implements Serializable {
 	private BigDecimal rate;
 
 	private String status;
-
-	private BigDecimal taxrate;
 
 	private BigDecimal weight;
 
@@ -82,7 +74,7 @@ public class Itemmaster implements Serializable {
 
 	//bi-directional many-to-one association to Hsncode
 	@ManyToOne
-	@JoinColumn(name="hsncodeid")
+	@JoinColumn(name="hsncode")
 	private Hsncode hsncodeBean;
 
 	//bi-directional many-to-one association to Itemcategory
@@ -122,9 +114,9 @@ public class Itemmaster implements Serializable {
 	@OneToMany(mappedBy="itemmaster")
 	private List<Itemreturndtl> itemreturndtls;
 
-	//bi-directional many-to-one association to Itemstockadj
+	//bi-directional many-to-one association to Itemspecifaction
 	@OneToMany(mappedBy="itemmaster")
-	private List<Itemstockadj> itemstockadjs;
+	private List<Itemspecifaction> itemspecifactions;
 
 	//bi-directional many-to-one association to Prodrecdafterjobdtl
 	@OneToMany(mappedBy="itemmaster")
@@ -134,13 +126,25 @@ public class Itemmaster implements Serializable {
 	@OneToMany(mappedBy="itemmaster")
 	private List<Supplieritemmaster> supplieritemmasters;
 
-	//bi-directional many-to-one association to Vendoritemadj
-	@OneToMany(mappedBy="itemmaster")
-	private List<Vendoritemadj> vendoritemadjs;
-
 	//bi-directional many-to-one association to Vendoritemmaster
 	@OneToMany(mappedBy="itemmaster")
 	private List<Vendoritemmaster> vendoritemmasters;
+
+	//bi-directional many-to-one association to Itemopenstockdtl
+	@OneToMany(mappedBy="itemmaster")
+	private List<Itemopenstockdtl> itemopenstockdtls;
+
+	//bi-directional many-to-one association to Prodinhouseitem
+	@OneToMany(mappedBy="itemmaster")
+	private List<Prodinhouseitem> prodinhouseitems;
+
+	//bi-directional many-to-one association to Prodinhouseprod
+	@OneToMany(mappedBy="itemmaster")
+	private List<Prodinhouseprod> prodinhouseprods;
+
+	//bi-directional many-to-one association to Vendoritemadjdtl
+	@OneToMany(mappedBy="itemmaster")
+	private List<Vendoritemadjdtl> vendoritemadjdtls;
 
 	public Itemmaster() {
 	}
@@ -169,14 +173,6 @@ public class Itemmaster implements Serializable {
 		this.conversionrate = conversionrate;
 	}
 
-	public String getConversionunit() {
-		return this.conversionunit;
-	}
-
-	public void setConversionunit(String conversionunit) {
-		this.conversionunit = conversionunit;
-	}
-
 	public String getCreatedby() {
 		return this.createdby;
 	}
@@ -191,22 +187,6 @@ public class Itemmaster implements Serializable {
 
 	public void setCreateddt(Date createddt) {
 		this.createddt = createddt;
-	}
-
-	public String getHsncode() {
-		return this.hsncode;
-	}
-
-	public void setHsncode(String hsncode) {
-		this.hsncode = hsncode;
-	}
-
-	public String getIncomingunit() {
-		return this.incomingunit;
-	}
-
-	public void setIncomingunit(String incomingunit) {
-		this.incomingunit = incomingunit;
 	}
 
 	public String getItemcode() {
@@ -279,14 +259,6 @@ public class Itemmaster implements Serializable {
 
 	public void setStatus(String status) {
 		this.status = status;
-	}
-
-	public BigDecimal getTaxrate() {
-		return this.taxrate;
-	}
-
-	public void setTaxrate(BigDecimal taxrate) {
-		this.taxrate = taxrate;
 	}
 
 	public BigDecimal getWeight() {
@@ -521,26 +493,26 @@ public class Itemmaster implements Serializable {
 		return itemreturndtl;
 	}
 
-	public List<Itemstockadj> getItemstockadjs() {
-		return this.itemstockadjs;
+	public List<Itemspecifaction> getItemspecifactions() {
+		return this.itemspecifactions;
 	}
 
-	public void setItemstockadjs(List<Itemstockadj> itemstockadjs) {
-		this.itemstockadjs = itemstockadjs;
+	public void setItemspecifactions(List<Itemspecifaction> itemspecifactions) {
+		this.itemspecifactions = itemspecifactions;
 	}
 
-	public Itemstockadj addItemstockadj(Itemstockadj itemstockadj) {
-		getItemstockadjs().add(itemstockadj);
-		itemstockadj.setItemmaster(this);
+	public Itemspecifaction addItemspecifaction(Itemspecifaction itemspecifaction) {
+		getItemspecifactions().add(itemspecifaction);
+		itemspecifaction.setItemmaster(this);
 
-		return itemstockadj;
+		return itemspecifaction;
 	}
 
-	public Itemstockadj removeItemstockadj(Itemstockadj itemstockadj) {
-		getItemstockadjs().remove(itemstockadj);
-		itemstockadj.setItemmaster(null);
+	public Itemspecifaction removeItemspecifaction(Itemspecifaction itemspecifaction) {
+		getItemspecifactions().remove(itemspecifaction);
+		itemspecifaction.setItemmaster(null);
 
-		return itemstockadj;
+		return itemspecifaction;
 	}
 
 	public List<Prodrecdafterjobdtl> getProdrecdafterjobdtls() {
@@ -587,28 +559,6 @@ public class Itemmaster implements Serializable {
 		return supplieritemmaster;
 	}
 
-	public List<Vendoritemadj> getVendoritemadjs() {
-		return this.vendoritemadjs;
-	}
-
-	public void setVendoritemadjs(List<Vendoritemadj> vendoritemadjs) {
-		this.vendoritemadjs = vendoritemadjs;
-	}
-
-	public Vendoritemadj addVendoritemadj(Vendoritemadj vendoritemadj) {
-		getVendoritemadjs().add(vendoritemadj);
-		vendoritemadj.setItemmaster(this);
-
-		return vendoritemadj;
-	}
-
-	public Vendoritemadj removeVendoritemadj(Vendoritemadj vendoritemadj) {
-		getVendoritemadjs().remove(vendoritemadj);
-		vendoritemadj.setItemmaster(null);
-
-		return vendoritemadj;
-	}
-
 	public List<Vendoritemmaster> getVendoritemmasters() {
 		return this.vendoritemmasters;
 	}
@@ -629,6 +579,94 @@ public class Itemmaster implements Serializable {
 		vendoritemmaster.setItemmaster(null);
 
 		return vendoritemmaster;
+	}
+
+	public List<Itemopenstockdtl> getItemopenstockdtls() {
+		return this.itemopenstockdtls;
+	}
+
+	public void setItemopenstockdtls(List<Itemopenstockdtl> itemopenstockdtls) {
+		this.itemopenstockdtls = itemopenstockdtls;
+	}
+
+	public Itemopenstockdtl addItemopenstockdtl(Itemopenstockdtl itemopenstockdtl) {
+		getItemopenstockdtls().add(itemopenstockdtl);
+		itemopenstockdtl.setItemmaster(this);
+
+		return itemopenstockdtl;
+	}
+
+	public Itemopenstockdtl removeItemopenstockdtl(Itemopenstockdtl itemopenstockdtl) {
+		getItemopenstockdtls().remove(itemopenstockdtl);
+		itemopenstockdtl.setItemmaster(null);
+
+		return itemopenstockdtl;
+	}
+
+	public List<Prodinhouseitem> getProdinhouseitems() {
+		return this.prodinhouseitems;
+	}
+
+	public void setProdinhouseitems(List<Prodinhouseitem> prodinhouseitems) {
+		this.prodinhouseitems = prodinhouseitems;
+	}
+
+	public Prodinhouseitem addProdinhouseitem(Prodinhouseitem prodinhouseitem) {
+		getProdinhouseitems().add(prodinhouseitem);
+		prodinhouseitem.setItemmaster(this);
+
+		return prodinhouseitem;
+	}
+
+	public Prodinhouseitem removeProdinhouseitem(Prodinhouseitem prodinhouseitem) {
+		getProdinhouseitems().remove(prodinhouseitem);
+		prodinhouseitem.setItemmaster(null);
+
+		return prodinhouseitem;
+	}
+
+	public List<Prodinhouseprod> getProdinhouseprods() {
+		return this.prodinhouseprods;
+	}
+
+	public void setProdinhouseprods(List<Prodinhouseprod> prodinhouseprods) {
+		this.prodinhouseprods = prodinhouseprods;
+	}
+
+	public Prodinhouseprod addProdinhouseprod(Prodinhouseprod prodinhouseprod) {
+		getProdinhouseprods().add(prodinhouseprod);
+		prodinhouseprod.setItemmaster(this);
+
+		return prodinhouseprod;
+	}
+
+	public Prodinhouseprod removeProdinhouseprod(Prodinhouseprod prodinhouseprod) {
+		getProdinhouseprods().remove(prodinhouseprod);
+		prodinhouseprod.setItemmaster(null);
+
+		return prodinhouseprod;
+	}
+
+	public List<Vendoritemadjdtl> getVendoritemadjdtls() {
+		return this.vendoritemadjdtls;
+	}
+
+	public void setVendoritemadjdtls(List<Vendoritemadjdtl> vendoritemadjdtls) {
+		this.vendoritemadjdtls = vendoritemadjdtls;
+	}
+
+	public Vendoritemadjdtl addVendoritemadjdtl(Vendoritemadjdtl vendoritemadjdtl) {
+		getVendoritemadjdtls().add(vendoritemadjdtl);
+		vendoritemadjdtl.setItemmaster(this);
+
+		return vendoritemadjdtl;
+	}
+
+	public Vendoritemadjdtl removeVendoritemadjdtl(Vendoritemadjdtl vendoritemadjdtl) {
+		getVendoritemadjdtls().remove(vendoritemadjdtl);
+		vendoritemadjdtl.setItemmaster(null);
+
+		return vendoritemadjdtl;
 	}
 
 }

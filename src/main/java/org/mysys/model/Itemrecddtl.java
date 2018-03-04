@@ -2,6 +2,9 @@ package org.mysys.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -18,6 +21,8 @@ public class Itemrecddtl implements Serializable {
 	@EmbeddedId
 	private ItemrecddtlPK id;
 
+	private String acctyear;
+
 	private BigDecimal amount;
 
 	private BigDecimal convqty;
@@ -30,8 +35,6 @@ public class Itemrecddtl implements Serializable {
 	private Date createddt;
 
 	private String incomingunit;
-
-	private String itemdesc;
 
 	private String modifiedby;
 
@@ -46,20 +49,18 @@ public class Itemrecddtl implements Serializable {
 
 	private BigDecimal rate;
 
-	@Temporal(TemporalType.DATE)
-	private Date recddate;
-
 	//bi-directional many-to-one association to Itemmaster
 	@ManyToOne
-	@JoinColumn(name="itemid")
+	@JoinColumn(name="itemid",insertable=false,updatable=false)
 	private Itemmaster itemmaster;
 
 	//bi-directional many-to-one association to Itemrecd
 	@ManyToOne
-	@JoinColumn(name="recptno",insertable=false,updatable=false)
+	@JoinColumn(name="ir_id",insertable=false,updatable=false)
 	private Itemrecd itemrecd;
 
 	//bi-directional many-to-one association to Site
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="siteid")
 	private Site site;
@@ -73,6 +74,14 @@ public class Itemrecddtl implements Serializable {
 
 	public void setId(ItemrecddtlPK id) {
 		this.id = id;
+	}
+
+	public String getAcctyear() {
+		return this.acctyear;
+	}
+
+	public void setAcctyear(String acctyear) {
+		this.acctyear = acctyear;
 	}
 
 	public BigDecimal getAmount() {
@@ -123,14 +132,6 @@ public class Itemrecddtl implements Serializable {
 		this.incomingunit = incomingunit;
 	}
 
-	public String getItemdesc() {
-		return this.itemdesc;
-	}
-
-	public void setItemdesc(String itemdesc) {
-		this.itemdesc = itemdesc;
-	}
-
 	public String getModifiedby() {
 		return this.modifiedby;
 	}
@@ -177,14 +178,6 @@ public class Itemrecddtl implements Serializable {
 
 	public void setRate(BigDecimal rate) {
 		this.rate = rate;
-	}
-
-	public Date getRecddate() {
-		return this.recddate;
-	}
-
-	public void setRecddate(Date recddate) {
-		this.recddate = recddate;
 	}
 
 	public Itemmaster getItemmaster() {

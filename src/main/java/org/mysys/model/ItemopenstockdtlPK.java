@@ -4,27 +4,27 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- * The primary key class for the prodrecdafterjobdtl database table.
+ * The primary key class for the itemopenstockdtl database table.
  * 
  */
 @Embeddable
-public class ProdrecdafterjobdtlPK implements Serializable {
+public class ItemopenstockdtlPK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="prj_id", insertable=false, updatable=false)
-	private long prjId;
+	@Column(name="ios_id")
+	private long iosId;
 
 	@Column(insertable=false, updatable=false)
 	private long itemid;
 
-	public ProdrecdafterjobdtlPK() {
+	public ItemopenstockdtlPK() {
 	}
-	public long getPrjId() {
-		return this.prjId;
+	public long getIosId() {
+		return this.iosId;
 	}
-	public void setPrjId(long prjId) {
-		this.prjId = prjId;
+	public void setIosId(long iosId) {
+		this.iosId = iosId;
 	}
 	public long getItemid() {
 		return this.itemid;
@@ -37,19 +37,19 @@ public class ProdrecdafterjobdtlPK implements Serializable {
 		if (this == other) {
 			return true;
 		}
-		if (!(other instanceof ProdrecdafterjobdtlPK)) {
+		if (!(other instanceof ItemopenstockdtlPK)) {
 			return false;
 		}
-		ProdrecdafterjobdtlPK castOther = (ProdrecdafterjobdtlPK)other;
+		ItemopenstockdtlPK castOther = (ItemopenstockdtlPK)other;
 		return 
-			(this.prjId == castOther.prjId)
+			(this.iosId == castOther.iosId)
 			&& (this.itemid == castOther.itemid);
 	}
 
 	public int hashCode() {
 		final int prime = 31;
 		int hash = 17;
-		hash = hash * prime + ((int) (this.prjId ^ (this.prjId >>> 32)));
+		hash = hash * prime + ((int) (this.iosId ^ (this.iosId >>> 32)));
 		hash = hash * prime + ((int) (this.itemid ^ (this.itemid >>> 32)));
 		
 		return hash;

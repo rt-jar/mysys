@@ -35,16 +35,6 @@ public class Itemspecmaster implements Serializable {
 	@OneToMany(mappedBy="itemspecmaster")
 	private List<Itemspecifaction> itemspecifactions;
 
-	//bi-directional many-to-one association to Itemcategory
-	@ManyToOne
-	@JoinColumn(name="itemcatid")
-	private Itemcategory itemcategory;
-
-	//bi-directional many-to-one association to Itemgroup
-	@ManyToOne
-	@JoinColumn(name="itemgroupid")
-	private Itemgroup itemgroup;
-
 	//bi-directional many-to-one association to Site
 	@ManyToOne
 	@JoinColumn(name="siteid")
@@ -121,22 +111,6 @@ public class Itemspecmaster implements Serializable {
 		itemspecifaction.setItemspecmaster(null);
 
 		return itemspecifaction;
-	}
-
-	public Itemcategory getItemcategory() {
-		return this.itemcategory;
-	}
-
-	public void setItemcategory(Itemcategory itemcategory) {
-		this.itemcategory = itemcategory;
-	}
-
-	public Itemgroup getItemgroup() {
-		return this.itemgroup;
-	}
-
-	public void setItemgroup(Itemgroup itemgroup) {
-		this.itemgroup = itemgroup;
 	}
 
 	public Site getSite() {

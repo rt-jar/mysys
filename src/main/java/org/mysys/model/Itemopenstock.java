@@ -7,18 +7,20 @@ import java.util.Date;
 
 
 /**
- * The persistent class for the customerproductmaster database table.
+ * The persistent class for the itemopenstock database table.
  * 
  */
 @Entity
-@NamedQuery(name="Customerproductmaster.findAll", query="SELECT c FROM Customerproductmaster c")
-public class Customerproductmaster implements Serializable {
+@NamedQuery(name="Itemopenstock.findAll", query="SELECT i FROM Itemopenstock i")
+public class Itemopenstock implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="cpm_id")
-	private long cpmId;
+	@Column(name="ios_id")
+	private long iosId;
+
+	private String acctyear;
 
 	private String createdby;
 
@@ -26,44 +28,44 @@ public class Customerproductmaster implements Serializable {
 	private Date createddt;
 
 	@Temporal(TemporalType.DATE)
-	private Date fromdate;
+	private Date entrydate;
 
 	private String modifiedby;
 
 	@Temporal(TemporalType.DATE)
 	private Date modifieddt;
 
-	private BigDecimal rate;
-
 	private String remarks;
 
-	@Temporal(TemporalType.DATE)
-	private Date todate;
+	private BigDecimal stockentryno;
 
-	//bi-directional many-to-one association to Contact
+	//bi-directional many-to-one association to Department
 	@ManyToOne
-	@JoinColumn(name="contactid")
-	private Contact contact;
-
-	//bi-directional many-to-one association to Itemmaster
-	@ManyToOne
-	@JoinColumn(name="itemid")
-	private Itemmaster itemmaster;
+	@JoinColumn(name="deptid")
+	private Department department;
 
 	//bi-directional many-to-one association to Site
 	@ManyToOne
 	@JoinColumn(name="siteid")
 	private Site site;
 
-	public Customerproductmaster() {
+	public Itemopenstock() {
 	}
 
-	public long getCpmId() {
-		return this.cpmId;
+	public long getIosId() {
+		return this.iosId;
 	}
 
-	public void setCpmId(long cpmId) {
-		this.cpmId = cpmId;
+	public void setIosId(long iosId) {
+		this.iosId = iosId;
+	}
+
+	public String getAcctyear() {
+		return this.acctyear;
+	}
+
+	public void setAcctyear(String acctyear) {
+		this.acctyear = acctyear;
 	}
 
 	public String getCreatedby() {
@@ -82,12 +84,12 @@ public class Customerproductmaster implements Serializable {
 		this.createddt = createddt;
 	}
 
-	public Date getFromdate() {
-		return this.fromdate;
+	public Date getEntrydate() {
+		return this.entrydate;
 	}
 
-	public void setFromdate(Date fromdate) {
-		this.fromdate = fromdate;
+	public void setEntrydate(Date entrydate) {
+		this.entrydate = entrydate;
 	}
 
 	public String getModifiedby() {
@@ -106,14 +108,6 @@ public class Customerproductmaster implements Serializable {
 		this.modifieddt = modifieddt;
 	}
 
-	public BigDecimal getRate() {
-		return this.rate;
-	}
-
-	public void setRate(BigDecimal rate) {
-		this.rate = rate;
-	}
-
 	public String getRemarks() {
 		return this.remarks;
 	}
@@ -122,28 +116,20 @@ public class Customerproductmaster implements Serializable {
 		this.remarks = remarks;
 	}
 
-	public Date getTodate() {
-		return this.todate;
+	public BigDecimal getStockentryno() {
+		return this.stockentryno;
 	}
 
-	public void setTodate(Date todate) {
-		this.todate = todate;
+	public void setStockentryno(BigDecimal stockentryno) {
+		this.stockentryno = stockentryno;
 	}
 
-	public Contact getContact() {
-		return this.contact;
+	public Department getDepartment() {
+		return this.department;
 	}
 
-	public void setContact(Contact contact) {
-		this.contact = contact;
-	}
-
-	public Itemmaster getItemmaster() {
-		return this.itemmaster;
-	}
-
-	public void setItemmaster(Itemmaster itemmaster) {
-		this.itemmaster = itemmaster;
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
 	public Site getSite() {
