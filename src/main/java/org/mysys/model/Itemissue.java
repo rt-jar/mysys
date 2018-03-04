@@ -2,6 +2,9 @@ package org.mysys.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 import java.util.List;
 
@@ -59,6 +62,7 @@ public class Itemissue implements Serializable {
 	private User user;
 
 	//bi-directional many-to-one association to Itemissuedtl
+	@JsonIgnore
 	@OneToMany(mappedBy="itemissue")
 	private List<Itemissuedtl> itemissuedtls;
 
